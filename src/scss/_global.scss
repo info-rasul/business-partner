@@ -1,0 +1,40 @@
+@charset "UTF-8";
+@import "fonts";
+:root {
+  font-size: 0.875rem;
+}
+@media (min-width: 24em) {
+  :root {
+    font-size: 0.9375rem;
+  }
+}
+@media (min-width: 48em) {
+  :root {
+    font-size: 1rem;
+  }
+}
+
+body {
+  cursor: default;
+  font-family: $font-content;
+  color: $color-body;
+  background: #1E1D2F;
+}
+
+a {
+  display: inline-block;
+  color: $color-link;
+  position: relative;
+  text-decoration: none;
+}
+
+#app {
+  display: flex;
+  position: relative;
+  flex-direction: column-reverse;
+}
+@media (min-width: 64em) {
+  #app {
+    min-height: 100vh;
+  }
+}

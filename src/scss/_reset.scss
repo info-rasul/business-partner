@@ -1,0 +1,71 @@
+html {
+    line-height: 1.46;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+dl, dd {
+    margin: 0;
+}
+
+h1 > small, h1 > time {
+    display: block;
+}
+
+input {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+input:focus {
+    outline: none;
+}
+
+article, figure {
+    display: block;
+}
+
+figure {
+    margin: 1em 40px;
+}
+
+summary:focus {
+    outline: none;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a:active, a:hover {
+    outline-width: 0;
+}
