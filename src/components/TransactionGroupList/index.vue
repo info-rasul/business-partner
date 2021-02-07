@@ -29,11 +29,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Transaction } from "@/models";
-import Account from "@/components/transactions/Account.vue";
-import Amount from "@/components/transactions/Amount.vue";
-import Description from "@/components/transactions/Description.vue";
-import Order from "@/components/transactions/Order.vue";
-import CreatedAt from "@/components/transactions/CreatedAt.vue";
+import Account from "./Account.vue";
+import Amount from "./Amount.vue";
+import Description from "./Description.vue";
+import Order from "./Order.vue";
+import CreatedAt from "./CreatedAt.vue";
 import moment from "moment";
 
 @Component({
@@ -47,8 +47,8 @@ import moment from "moment";
   }
 })
 export default class extends Vue {
-  @Prop({ required: false }) private transactions!: Transaction;
-  @Prop({ required: true }) private title!: moment.Moment;
+  @Prop({ required: true }) transactions!: Transaction;
+  @Prop({ required: true }) title!: moment.Moment;
 }
 </script>
 

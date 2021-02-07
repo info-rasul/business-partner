@@ -4,7 +4,8 @@ export class BaseService {
         throw new Error("entity getter not defined");
     }
     static request(status = { auth: false }) {
-        return new Http(status);
+        const http = new Http(status);
+        return http.init();
     }
 }
 //# sourceMappingURL=BaseService.js.map

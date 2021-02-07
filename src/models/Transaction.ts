@@ -27,6 +27,14 @@ export enum GroupProperty {
   CREATED_AT = "created_at"
 }
 
+interface ErrorHandling {
+  timestamp: moment.Moment;
+  status: number;
+  error: string;
+  message: string;
+  path: string;
+}
+
 export interface Transaction {
   event_id: number;
   event_name: EventName;
@@ -37,3 +45,12 @@ export interface Transaction {
   account_number: string | null;
   created_at: moment.Moment;
 }
+
+export interface TransactionsList {
+  count: number;
+  countPerPage: number;
+  page: number;
+  result: Transaction[] | [];
+}
+
+export type TransactionsResponse = Array<Record<string, Transaction>>;

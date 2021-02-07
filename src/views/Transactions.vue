@@ -1,6 +1,6 @@
 <template>
   <div id="report">
-    <div>
+    <div v-if="Object.keys(transactions).length > 0">
       <transaction-group-list
         v-for="(transaction, index) in transactions"
         :key="index"
@@ -8,12 +8,14 @@
         :transactions="transaction"
       />
     </div>
+    <div v-else-if="errorMessage">{{ errorMessage }}</div>
+    <div v-else-if="!loading">Нет записей</div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TransactionGroupList from "@/components/TransactionGroupList.vue";
+import TransactionGroupList from "@/components/TransactionGroupList/index.vue";
 import { TransactionService } from "@/services";
 
 @Component({
@@ -22,10 +24,9 @@ import { TransactionService } from "@/services";
   }
 })
 export default class Transactions extends Vue {
+  loading = false;
   transactions = [];
-  error: false;
-  loading: false;
-  page: 1;
+  private errorMessage = "";
 
   created() {
     this.fetchData();
@@ -33,20 +34,15 @@ export default class Transactions extends Vue {
 
   async fetchData() {
     this.loading = true;
-
-    try {
-      TransactionService.getTransactionsForAccount({ page: this.page }).then(
-        (data: any) => {
-          this.transactions = data;
-        }
-      );
-    } catch (e) {
-      this.error = e.message;
-      this.loading = false;
-      console.log(e);
-    } finally {
-      this.loading = false;
-    }
+    TransactionService.getTransactions({})
+      .then((data: any) => {
+        this.transactions = data;
+        this.loading = false;
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+        this.loading = false;
+      });
   }
 }
 </script>

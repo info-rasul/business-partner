@@ -11,7 +11,7 @@ import moment from "moment";
 @Component({
   name: "CreatedAt",
   filters: {
-    moment: function(date) {
+    moment: function(date: moment.Moment) {
       return moment(date).format("hh:mm");
     }
   }

@@ -1,17 +1,15 @@
-import { Http } from "./Http";
+import { BaseService } from "./BaseService";
 import { GroupProperty } from "@/models";
 import { groupBy } from "@/services/util";
-export class TransactionService {
-    static get entity() {
-        return "cabinet/protected/transactions/page/1";
+export class TransactionService extends BaseService {
+    get entity() {
+        return "posts";
     }
-    static request(status = { auth: true }) {
-        const http = new Http(status);
-        return http.init();
-    }
-    static async getTransactionsForAccount(parameters) {
+    static async getTransactions(parameters) {
         const params = { ...parameters };
-        const resp = await this.request({ auth: true }).get(`${this.entity}`, {
+        const resp = await super
+            .request({ auth: true })
+            .get(`cabinet/protected/transactions/page/1`, {
             params
         });
         return groupBy(resp.data.result, GroupProperty.CREATED_AT);
