@@ -12,7 +12,9 @@ import moment from "moment";
   name: "CreatedAt",
   filters: {
     moment: function(date: moment.Moment) {
-      return moment(date).format("hh:mm");
+      return moment(date)
+        .utcOffset("+0000")
+        .format("HH:mm");
     }
   }
 })

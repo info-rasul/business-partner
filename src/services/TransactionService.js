@@ -2,17 +2,22 @@ import { BaseService } from "./BaseService";
 import { GroupProperty } from "@/models";
 import { groupBy } from "@/services/util";
 export class TransactionService extends BaseService {
-    get entity() {
-        return "posts";
+    static get entity() {
+        return "cabinet/protected/transactions/page/1";
     }
     static async getTransactions(parameters) {
         const params = { ...parameters };
-        const resp = await super
-            .request({ auth: true })
-            .get(`cabinet/protected/transactions/page/1`, {
-            params
-        });
-        return groupBy(resp.data.result, GroupProperty.CREATED_AT);
+        try {
+            const response = await super
+                .request({ auth: true })
+                .get(`${this.entity}`, {
+                params
+            });
+            return groupBy(response.data.result, GroupProperty.CREATED_AT);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
     }
 }
 //# sourceMappingURL=TransactionService.js.map

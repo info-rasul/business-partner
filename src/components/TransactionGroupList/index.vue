@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="title">
-      <span>{{ title }}</span>
-    </div>
+    <group-title :title="title" />
     <ul>
       <li
         v-for="(transaction, index) in transactions"
@@ -29,6 +27,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Transaction } from "@/models";
+import GroupTitle from "./GroupTitle.vue";
 import Account from "./Account.vue";
 import Amount from "./Amount.vue";
 import Description from "./Description.vue";
@@ -39,6 +38,7 @@ import moment from "moment";
 @Component({
   name: "TransactionsList",
   components: {
+    GroupTitle,
     CreatedAt,
     Account,
     Amount,

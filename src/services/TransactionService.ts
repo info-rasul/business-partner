@@ -8,7 +8,7 @@ import { groupBy } from "@/services/util";
 
 export class TransactionService extends BaseService {
   static get entity() {
-    return "cabinet/protected/transactions/page/2";
+    return "cabinet/protected/transactions/page/1";
   }
 
   static async getTransactions(

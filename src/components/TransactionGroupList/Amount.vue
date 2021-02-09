@@ -9,7 +9,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Type } from "@/models";
 
 @Component({
-  name: "Amount",
+  name: "Amount"
 })
 export default class extends Vue {
   @Prop({ required: true }) private amount!: number;
