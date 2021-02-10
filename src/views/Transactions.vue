@@ -25,14 +25,14 @@ import { TransactionService } from "@/services";
 })
 export default class Transactions extends Vue {
   loading = false;
-  transactions = [];
+  transactions: Array = [];
   private errorMessage = "";
 
   created() {
     this.fetchData();
   }
 
-  async fetchData() {
+  fetchData() {
     this.loading = true;
     TransactionService.getTransactions({})
       .then((data: any) => {

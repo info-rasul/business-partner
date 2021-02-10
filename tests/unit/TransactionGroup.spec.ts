@@ -1,30 +1,30 @@
 import { shallowMount } from "@vue/test-utils";
-import faker from "faker";
-import { Factory } from "rosie";
-import moment from "moment";
-import { EventName, Type } from "@/models";
-
 import TransactionGroup from "@/components/TransactionGroupList/index.vue";
+import Account from "@/components/TransactionGroupList/Account.vue";
+import Amount from "@/components/TransactionGroupList/Amount.vue";
+import CreatedAt from "@/components/TransactionGroupList/CreatedAt.vue";
+import Description from "@/components/TransactionGroupList/Description.vue";
+import GroupTitle from "@/components/TransactionGroupList/GroupTitle.vue";
+import Order from "@/components/TransactionGroupList/Order.vue";
+
+import moment from "moment";
+import { transactionFactory } from "./faker/transaction";
 
 describe("index.vue", () => {
-  it("render is components", () => {
-    const date = moment(faker.date.past(1)).format("DD-MM-YYYY");
-    const transaction = new Factory()
-      .attr("event_id", faker.random.number({ min: 10000, max: 99999 }))
-      .attr("event_name", faker.random.arrayElement(Object.values(EventName)))
-      .attr("type", faker.random.arrayElement(Object.values(Type)))
-      .attr("amount", faker.random.number({ min: 10000, max: 99999 }))
-      .attr("currency", "RUB")
-      .attr("description", faker.lorem.sentence(10, 20))
-      .attr("account_number", faker.finance.creditCardNumber())
-      .attr("created_at", moment(faker.date.past(1)).format("DD-MM-YYYY"));
+  it("renders with mount TransactionGroupList/index.vue", () => {
+    const date = moment().format("DD-MM-YYYY");
 
     const wrapper = shallowMount(TransactionGroup, {
       propsData: {
-        transactions: transaction.build(),
+        transactions: transactionFactory.build(),
         title: date
       }
     });
-    expect(wrapper.is(TransactionGroup)).toBe(true);
+    expect(wrapper.findComponent(Account).exists()).toBe(true);
+    expect(wrapper.findComponent(Amount).exists()).toBe(true);
+    expect(wrapper.findComponent(CreatedAt).exists()).toBe(true);
+    expect(wrapper.findComponent(Description).exists()).toBe(true);
+    expect(wrapper.findComponent(GroupTitle).exists()).toBe(true);
+    expect(wrapper.findComponent(Order).exists()).toBe(true);
   });
 });
