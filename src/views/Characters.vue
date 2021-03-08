@@ -1,11 +1,10 @@
 <template>
-  <div id="report">
-    <div v-if="Object.keys(transactions).length > 0">
-      <transaction-group-list
-        v-for="(transaction, index) in transactions"
+  <div>
+    <div v-if="characters.length > 0" class="characters">
+      <character-card
+        v-for="(transaction, index) in characters"
         :key="index"
-        :title="index"
-        :transactions="transaction"
+        :characters="transaction"
       />
     </div>
     <div v-else-if="errorMessage">{{ errorMessage }}</div>
@@ -15,17 +14,18 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TransactionGroupList from "@/components/TransactionGroupList/index.vue";
-import { TransactionService } from "@/services";
+import CharacterCard from "@/components/CharacterCard/index.vue";
+import { CharacterService } from "@/services";
+import { Character } from "@/models";
 
 @Component({
   components: {
-    TransactionGroupList
+    CharacterCard
   }
 })
-export default class Transactions extends Vue {
+export default class Characters extends Vue {
   loading = false;
-  transactions: Array = [];
+  characters: Array<Character> = [];
   private errorMessage = "";
 
   created() {
@@ -34,9 +34,9 @@ export default class Transactions extends Vue {
 
   fetchData() {
     this.loading = true;
-    TransactionService.getTransactions({})
+    CharacterService.getList({})
       .then((data: any) => {
-        this.transactions = data;
+        this.characters = data;
         this.loading = false;
       })
       .catch(error => {
@@ -47,7 +47,10 @@ export default class Transactions extends Vue {
 }
 </script>
 <style scoped lang="scss">
-#report {
-  margin: 40px 0;
-}
+  .characters {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 </style>

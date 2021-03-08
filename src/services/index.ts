@@ -1,1 +1,1 @@
-export * from "./TransactionService";
+export * from "./CharacterService";

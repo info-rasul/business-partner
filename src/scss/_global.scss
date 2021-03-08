@@ -18,7 +18,8 @@ body {
   cursor: default;
   font-family: $font-content;
   color: $color-body;
-  background: #1E1D2F;
+  background-image: url('https://subtlepatterns.com/patterns/sativa.png');
+  line-height: 1.7;
 }
 
 a {
@@ -28,13 +29,32 @@ a {
   text-decoration: none;
 }
 
-#app {
-  display: flex;
-  position: relative;
-  flex-direction: column-reverse;
-}
-@media (min-width: 64em) {
-  #app {
-    min-height: 100vh;
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  min-width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  @include media_desktop {
+    max-width: 980px;
+  }
+
+  @include media_tablet {
+    max-width: 1024px;
   }
 }
+.character {
+  @include media_desktop {
+    width: 32%;
+  }
+
+  @include media_tablet {
+    width: 49%;
+  }
+
+  @include media_mobile {
+    width: 100%;
+  }
+}
+

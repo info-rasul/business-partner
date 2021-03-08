@@ -1,4 +1,4 @@
-# payterra
+# business-partner
 
 ## Project setup
 ```

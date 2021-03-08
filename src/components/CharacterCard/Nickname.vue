@@ -1,6 +1,6 @@
 <template>
-  <p class="description">
-    {{ description }}
+  <p class="nickname">
+    {{ nickname }}
   </p>
 </template>
 
@@ -8,9 +8,9 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
-  name: "Description"
+  name: "Nickname"
 })
 export default class extends Vue {
-  @Prop({ required: false }) private description!: string;
+  @Prop({ required: false }) private nickname!: string;
 }
 </script>

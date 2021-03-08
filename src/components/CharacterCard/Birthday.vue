@@ -1,6 +1,8 @@
 <template>
   <div class="time">
-    <time :datetime="createdAt">{{ createdAt | moment }}</time>
+    <time :datetime="birthday">
+      {{ birthday | moment }}
+    </time>
   </div>
 </template>
 
@@ -9,16 +11,16 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import moment from "moment";
 
 @Component({
-  name: "CreatedAt",
+  name: "Birthday",
   filters: {
     moment: function(date: moment.Moment) {
-      return moment(date)
-        .utcOffset("+0000")
-        .format("HH:mm");
+      return moment(date).isValid()
+          ? `Birthday: ${moment(date).format("YYYY-MM-DD")}`
+          : ''
     }
   }
 })
 export default class extends Vue {
-  @Prop({ required: true }) private createdAt!: moment.Moment;
+  @Prop({ required: true }) private birthday!: moment.Moment;
 }
 </script>

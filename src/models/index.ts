@@ -1,2 +1,2 @@
 export * from "./StatusAuth";
-export * from "./Transaction";
+export * from "./Character";
